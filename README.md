@@ -1,4 +1,4 @@
-### 1. FCFS CPU Scheduling
+### 4. FCFS CPU Scheduling
 
 ```python
 bt = [5, 3, 8]  # burst times
@@ -18,7 +18,7 @@ print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
 
-### 2. SJF (Non-Preemptive) CPU Scheduling
+### 5. SJF (Non-Preemptive) CPU Scheduling
 
 ```python
 bt = [6, 8, 7, 3]
@@ -40,7 +40,7 @@ print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
 
-### 3. Priority CPU Scheduling (Non-Preemptive)
+### 6. Priority CPU Scheduling (Non-Preemptive)
 
 ```python
 bt = [10, 1, 2, 1]
@@ -63,7 +63,7 @@ print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
 
-### 4. Round Robin CPU Scheduling
+### 7. Round Robin CPU Scheduling
 
 ```python
 bt = [5, 4, 2]
@@ -89,7 +89,7 @@ print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
 
-### 5. FIFO Page Replacement
+### 10. FIFO Page Replacement
 
 ```python
 pages = [1, 2, 3, 2, 4, 1, 5]
@@ -114,7 +114,7 @@ print("Page Hits:", hits)
 print("Hit Ratio:", hits / len(pages))
 ```
 
-### 6. LRU Page Replacement
+### 11. LRU Page Replacement
 
 ```python
 pages = [1, 2, 3, 2, 2, 5, 1]
@@ -138,7 +138,7 @@ print("Page Hits:", hits)
 print("Hit Ratio:", hits / len(pages))
 ```
 
-### 7. Sequential File Allocation
+### 12. Sequential File Allocation
 
 ```python
 def sequential_file_allocation():
