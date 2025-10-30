@@ -17,7 +17,23 @@ print("Turnaround Times:", tat)
 print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
+OR
+```python
+n = int(input("Enter number of processes: "))
+bt = list(map(int, input("Enter burst times: ").split()))
+wt = [0] * n
+tat = [0] * n
 
+for i in range(1, n):
+    wt[i] = wt[i-1] + bt[i-1]
+for i in range(n):
+    tat[i] = wt[i] + bt[i]
+
+print("Waiting Times:", wt)
+print("Turnaround Times:", tat)
+print("Average Waiting Time:", sum(wt)/n)
+print("Average Turnaround Time:", sum(tat)/n)
+```
 ### 5. SJF (Non-Preemptive) CPU Scheduling
 
 ```python
@@ -31,6 +47,25 @@ tat = [0]*n
 for i in range(1, n):
     wt[p[i]] = wt[p[i-1]] + bt[p[i-1]]
 
+for i in range(n):
+    tat[i] = wt[i] + bt[i]
+
+print("Waiting Times:", wt)
+print("Turnaround Times:", tat)
+print("Average Waiting Time:", sum(wt)/n)
+print("Average Turnaround Time:", sum(tat)/n)
+```
+OR
+```python
+n = int(input("Enter number of processes: "))
+bt = list(map(int, input("Enter burst times: ").split()))
+p = list(range(n))
+p.sort(key=lambda x: bt[x])
+
+wt = [0] * n
+tat = [0] * n
+for i in range(1, n):
+    wt[p[i]] = wt[p[i-1]] + bt[p[i-1]]
 for i in range(n):
     tat[i] = wt[i] + bt[i]
 
@@ -62,6 +97,26 @@ print("Turnaround Times:", tat)
 print("Average Waiting Time:", sum(wt)/n)
 print("Average Turnaround Time:", sum(tat)/n)
 ```
+OR
+```python
+n = int(input("Enter number of processes: "))
+bt = list(map(int, input("Enter burst times: ").split()))
+priority = list(map(int, input("Enter priorities (lower number = higher priority): ").split()))
+p = list(range(n))
+p.sort(key=lambda x: priority[x])
+
+wt = [0] * n
+tat = [0] * n
+for i in range(1, n):
+    wt[p[i]] = wt[p[i-1]] + bt[p[i-1]]
+for i in range(n):
+    tat[i] = wt[i] + bt[i]
+
+print("Waiting Times:", wt)
+print("Turnaround Times:", tat)
+print("Average Waiting Time:", sum(wt)/n)
+print("Average Turnaround Time:", sum(tat)/n)
+```
 
 ### 7. Round Robin CPU Scheduling
 
@@ -69,6 +124,30 @@ print("Average Turnaround Time:", sum(tat)/n)
 bt = [5, 4, 2]
 q = 2  # time quantum
 n = len(bt)
+rt = bt.copy()
+t = 0
+wt = [0]*n
+
+while max(rt) > 0:
+    for i in range(n):
+        if rt[i] > 0:
+            dt = min(rt[i], q)
+            t += dt
+            rt[i] -= dt
+            if rt[i] == 0:
+                wt[i] = t - bt[i]
+
+tat = [wt[i] + bt[i] for i in range(n)]
+print("Waiting Times:", wt)
+print("Turnaround Times:", tat)
+print("Average Waiting Time:", sum(wt)/n)
+print("Average Turnaround Time:", sum(tat)/n)
+```
+OR
+```python
+n = int(input("Number of processes: "))
+bt = list(map(int, input("Burst times: ").split()))
+q = int(input("Time quantum: "))
 rt = bt.copy()
 t = 0
 wt = [0]*n
